@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
    mpz_init_set_ui(den, 1);
    mpz_init_set_ui(num, 1);
 
-   for (i = k = 0; i < n;) {
+   for (i = k = 0; i < n;i++) {
       next_term(++k);
       if (mpz_cmp(num, acc) > 0)
          continue;
@@ -48,10 +48,10 @@ int main(int argc, char **argv) {
       d = extract_digit(3);
       if (d != extract_digit(4))
          continue;
-
-      putchar('0' + d);
+    
+      /*putchar('0' + d);
       if (++i % 10 == 0)
-         printf("\t:%u\n", i);
+         printf("\t:%u\n", i);*/
       eliminate_digit(d);
    }
 
