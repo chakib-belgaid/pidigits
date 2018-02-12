@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "gmp.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <gmp.h>
+
 mpz_t tmp1, tmp2, acc, den, num;
 typedef unsigned int ui;
 
@@ -40,7 +44,7 @@ int main(int argc, char **argv) {
    mpz_init_set_ui(den, 1);
    mpz_init_set_ui(num, 1);
 
-   for (i = k = 0; i < n;i++) {
+   for (i = k = 0; i < n;) {
       next_term(++k);
       if (mpz_cmp(num, acc) > 0)
          continue;
@@ -48,10 +52,12 @@ int main(int argc, char **argv) {
       d = extract_digit(3);
       if (d != extract_digit(4))
          continue;
-    
+
       /*putchar('0' + d);
       if (++i % 10 == 0)
-         printf("\t:%u\n", i);*/
+         printf("\t:%u\n", i);
+      */
+      ++i;
       eliminate_digit(d);
    }
 

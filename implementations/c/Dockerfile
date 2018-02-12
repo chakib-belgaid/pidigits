@@ -3,6 +3,9 @@ LABEL Name=c Version=0.0.1
 ADD pidigits.c .
 RUN apt-get -y update && apt-get -y install gcc
 RUN gcc -lgmp pidigits.c -o pidigitc
+#RUN gcc -lgmp -O1 pidigits.c -o pidigitc
+#RUN gcc -lgmp -O2 pidigits.c -o pidigitc
+#RUN gcc -lgmp -O3 pidigits.c -o pidigitc
 FROM chakibmed/powerapi:latest
 COPY --from=compiler  pidigitc . 
 

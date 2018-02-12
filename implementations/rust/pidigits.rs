@@ -1,7 +1,6 @@
 use std::os::raw::{c_int, c_ulong, c_void};
 use std::mem::uninitialized;
 use std::cmp::Ordering;
-use std::io::{stdout, BufWriter, Write};
 
 fn main() {
     //let stdout = stdout();
