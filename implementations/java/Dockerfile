@@ -8,5 +8,5 @@ FROM chakibmed/powerapi:latest
 COPY --from=compiler  "*.class" ./ 
 
 
-ENTRYPOINT ["java", "pidigits" ]
+ENTRYPOINT ["./analyse.sh","java", "pidigits" ]
 CMD [ "1000" ] 

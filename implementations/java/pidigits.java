@@ -11,14 +11,15 @@ public class pidigits {
       
       while (n > 0){
          if (n >= L){
-            for (int i=0; i<L; i++) System.out.print( digits.next() );
-            j += L;
+           for (int i=0; i<L; i++)  digits.next() ;
+           
+           j += L;
          } else {
-            for (int i=0; i<n; i++) System.out.print( digits.next() );
-            for (int i=n; i<L; i++) System.out.print(" ");  
-            j += n;   
+            for (int i=0; i<n; i++)  digits.next() ;
+          //  for (int i=n; i<L; i++) System.out.print(" ");  
+          j += n;   
          }
-         System.out.print("\t:"); System.out.println(j);
+        // System.out.print("\t:"); System.out.println(j);
          n -= L;           
       }               
    }
