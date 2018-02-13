@@ -9,14 +9,15 @@ fn main() {
         .nth(1)
         .and_then(|s| s.into_string().ok())
         .and_then(|n| n.parse().ok())
-        .unwrap_or(27);
+        .unwrap_or(10000);
     let niters = std::env::args_os()
         .nth(2)
         .and_then(|s| s.into_string().ok())
         .and_then(|n| n.parse().ok())
-        .unwrap_or(27);     
-    for _ in Context::new().enumerate().take(n) {;
-    }  
+        .unwrap_or(1);
+    for _ in 0u32..niters {
+        for _ in Context::new().enumerate().take(n) {}
+    }
     /*for (i, d) in Context::new().enumerate().take(n) {
         let _ = write!(stdout, "{}", d);
         if i % 10 == 9 {

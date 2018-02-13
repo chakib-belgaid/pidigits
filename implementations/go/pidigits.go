@@ -8,14 +8,13 @@ package main
 import "C"
 
 import (
-	"bufio"
 	"flag"
-	"os"
 	"runtime"
 	"strconv"
 )
 
 var n = 0
+var niters = 1
 
 func extract_digit(nth uint32) uint32 {
 	C.mpz_mul_ui(&tmp1[0], &num[0], C.ulong(nth))
@@ -45,44 +44,49 @@ func init() {
 	flag.Parse()
 	if flag.NArg() > 0 {
 		n, _ = strconv.Atoi(flag.Arg(0))
+		if flag.NArg() > 1 {
+			niters, _ = strconv.Atoi(flag.Arg(1))
+		}
 	}
 }
 
 var tmp1, tmp2, acc, den, num C.mpz_t
 
 func main() {
-	w := bufio.NewWriter(os.Stdout)
-	defer w.Flush()
+	//w := bufio.NewWriter(os.Stdout)
+	//defer w.Flush()
+	for iter := 0; iter < niters; iter++ {
+		C.mpz_init(&tmp1[0])
+		C.mpz_init(&tmp2[0])
 
-	C.mpz_init(&tmp1[0])
-	C.mpz_init(&tmp2[0])
+		C.mpz_init_set_ui(&acc[0], 0)
+		C.mpz_init_set_ui(&den[0], 1)
+		C.mpz_init_set_ui(&num[0], 1)
 
-	C.mpz_init_set_ui(&acc[0], 0)
-	C.mpz_init_set_ui(&den[0], 1)
-	C.mpz_init_set_ui(&num[0], 1)
+		k := uint32(0)
+		d := uint32(0)
+		for i := 0; i < n; {
+			k++
+			next_term(k)
 
-	k := uint32(0)
-	d := uint32(0)
-	for i := 0; i < n; {
-		k++
-		next_term(k)
+			if C.mpz_cmp(&num[0], &acc[0]) > 0 {
+				continue
+			}
 
-		if C.mpz_cmp(&num[0], &acc[0]) > 0 {
-			continue
+			d = extract_digit(3)
+			if d != extract_digit(4) {
+				continue
+			}
+
+			//fmt.Printf("%d", d)
+
+			i++
+			/*if i%10 == 0 {
+				fmt.Printf("\t:%d\n", i)
+			} */
+
+			eliminate_digit(d)
+
 		}
-
-		d = extract_digit(3)
-		if d != extract_digit(4) {
-			continue
-		}
-
-		//fmt.Printf("%d", d)
-
-		i++
-		/*if i%10 == 0 {
-			fmt.Printf("\t:%d\n", i)
-		} */
-
-		eliminate_digit(d)
 	}
 }
