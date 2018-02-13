@@ -1,8 +1,8 @@
 FROM chakibmed/gmp:latest as compiler
 LABEL Name=cpp Version=0.0.1
 ADD pidigits.cpp .
-RUN apt-get -y update && apt-get -y install g++
-RUN gcc  -c  pidigits.cpp -o pidigits.o 
+#RUN apt-get -y update && apt-get -y install g++
+RUN g++  -c  pidigits.cpp -o pidigits.o 
 #RUN g++ -lgmp -lgmpxx pidigits.o -o pidigits
 #RUN g++ -lgmp -O1 -lgmpxx pidigits.o -o pidigits
 #RUN g++ -lgmp -O2 -lgmpxx pidigits.o -o pidigits
