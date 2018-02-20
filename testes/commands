@@ -3,7 +3,8 @@ docker-machine create -d g5k \
 --g5k-password '001010CH@k!b++' \
 --g5k-site "nancy" \
 --g5k-walltime "8:00:00" \
-test3
+test1
+
 
 
 docker-machine scp test:*.power .
@@ -25,7 +26,9 @@ do
     sleep 10
 done
 
+da=testes$(date "+%Y-%m-%d")
 mkdir testes$(date "+%Y-%m-%d")
+cp testes.ipynb $da
 cd $(da)
 for i in  {1..3}
 do  
@@ -34,4 +37,4 @@ do
     cp testes.ipynb machine$i
 done
 
-retdec 	497625d0-6822-4d71-85cc-836cb1055ccd
+for i in $(docker images --format="{{.Repository}}:{{.Tag}}" | grep chakibmed/pidigits ) ; do docker push  $i ;done

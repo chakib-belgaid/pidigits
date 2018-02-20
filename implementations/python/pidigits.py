@@ -46,7 +46,7 @@ for i in range(Niters):
             u  = mul(n2, k + 2)
             n2 = add(w, u)
             d  = mul(d, k2 + 1)
-            k += 1;
+            k += 1
 
     #if i % 10 != 0:
     #    f.write("%s\t:%d\n" % (' ' * (10 - (i%10)),N)) 

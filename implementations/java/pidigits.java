@@ -4,9 +4,10 @@ public class pidigits {
   static final int L = 10;
 
   public static void main(String args[]) {
-    int n = Integer.parseInt(args[0]);
     int niters = (args.length > 1) ? Integer.parseInt(args[1]) : 1;
     for (int k = 0; k < niters; k++) {
+      int n = Integer.parseInt(args[0]);
+    
       PiDigitSpigot digits = new PiDigitSpigot();
       int j = 0;
       while (n > 0) {
@@ -23,6 +24,7 @@ public class pidigits {
         }
         // System.out.print("\t:"); System.out.println(j);
         n -= L;
+      
       }
     }
 
